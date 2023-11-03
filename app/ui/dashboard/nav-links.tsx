@@ -34,7 +34,7 @@ export default function NavLinks() {
 
   return (
     <>
-      <Link href={`https://nextjs.org/learn/dashboard-app/navigating-between-pages`} target='_blank'>Curso</Link>
+      <Link href={`https://nextjs.org/learn/dashboard-app/static-and-dynamic-rendering`} target='_blank'>Curso</Link>
       
       {links.map((link) => {
         const LinkIcon = link.icon;

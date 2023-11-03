@@ -20,6 +20,8 @@ async function seedUsers(client) {
       );
     `;
 
+    const truncateTable = await client.sql`TRUNCATE TABLE users;`;
+
     console.log(`Created "users" table`);
 
     // Insert data into the "users" table
@@ -38,6 +40,7 @@ async function seedUsers(client) {
 
     return {
       createTable,
+      truncateTable,
       users: insertedUsers,
     };
   } catch (error) {
@@ -52,15 +55,17 @@ async function seedInvoices(client) {
 
     // Create the "invoices" table if it doesn't exist
     const createTable = await client.sql`
-    CREATE TABLE IF NOT EXISTS invoices (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    customer_id UUID NOT NULL,
-    amount INT NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    date DATE NOT NULL
-  );
-`;
+        CREATE TABLE IF NOT EXISTS invoices (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        customer_id UUID NOT NULL,
+        amount INT NOT NULL,
+        status VARCHAR(255) NOT NULL,
+        date DATE NOT NULL
+      );
+    `;
 
+    const truncateTable = await client.sql`TRUNCATE TABLE invoices;`;
+    
     console.log(`Created "invoices" table`);
 
     // Insert data into the "invoices" table
@@ -100,6 +105,8 @@ async function seedCustomers(client) {
       );
     `;
 
+    const truncateTable = await client.sql`TRUNCATE TABLE customers;`;
+
     console.log(`Created "customers" table`);
 
     // Insert data into the "customers" table
@@ -134,6 +141,8 @@ async function seedRevenue(client) {
         revenue INT NOT NULL
       );
     `;
+
+    const truncateTable = await client.sql`TRUNCATE TABLE revenue;`;
 
     console.log(`Created "revenue" table`);
 
